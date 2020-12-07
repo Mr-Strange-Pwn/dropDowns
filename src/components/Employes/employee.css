@@ -1,13 +1,19 @@
 .dropDown {
   width: 376px;
-  height: 54px;
-  align-items: center;
+  height: 46px;
   background: #f0f5fb;
   border-radius: 16px;
   cursor: pointer;
 }
-
-.dropDown-container{
+.Line {
+  background: #274b88;
+  width: 87%;
+}
+.chck1 {
+  position: relative;
+  width: 100px;
+}
+.dropDown-container {
   width: 376px;
   background: #1c3663;
   color: #dae2ef;
@@ -16,7 +22,7 @@
 
 .dropDownItems {
   align-items: center;
- 
+
   font-family: Montserrat;
   font-style: normal;
   font-weight: 500;
@@ -25,7 +31,6 @@
   /* or 18px */
 
   font-feature-settings: "tnum" on, "lnum" on;
-  
 }
 .dropDownSearch {
   width: 100%;
@@ -33,10 +38,5 @@
   border: none;
   background: #1c3663;
   border-radius: 8px;
-  color: #6F8BBC;
-}
-
-.Line{
-  opacity: 0.5;
-border: 1px solid #25406D;
+  color: #6f8bbc;
 }

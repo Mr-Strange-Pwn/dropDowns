@@ -1,0 +1,16 @@
+.dropDown {
+    width: 376px;
+    height: 46px;
+    background: #f0f5fb;
+    border-radius: 16px;
+    cursor: pointer;
+  }
+
+  .Cal__MonthList__root {
+    background-color:#1c3663;
+   
+  }
+  .Cal__Month__row:first-child li {
+    background-color:#1c3663;
+    box-shadow: 0 -1px 0  #556E9A;
+  }
