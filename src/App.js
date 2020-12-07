@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Container, Row, Col } from "react-bootstrap";
+import Employes from "./components/Employes/Employes";
+import Date from "./components/Date/Date";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+    <Container>
+      <Row>
+        <Col>
+          <h4> select employee dropdown</h4>
+          <Employes />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <h4> pick date dropdown</h4>
+          <Date />
+        </Col>
+      </Row>
+    </Container>
   );
 }
-
-export default App;
