@@ -7,31 +7,31 @@ export default function App() {
   const Employee = [
     {
       id: "1",
-      name: 'one',
+      name: 'One',
       img: 'https://img.icons8.com/officel/2x/person-male.png',
       selected: false
     },
     {
       id: "2",
-      name: 'two',
+      name: 'Two',
       img: 'https://img.icons8.com/officel/2x/person-male.png',
       selected: false
     },
     {
       id: "3",
-      name: 'three',
+      name: 'Three',
       img: 'https://img.icons8.com/officel/2x/person-male.png',
       selected: false
     },
     {
       id: "4",
-      name: 'four',
+      name: 'Four',
       img: 'https://img.icons8.com/officel/2x/person-male.png',
       selected: false
     },
     {
       id: "5",
-      name: 'five',
+      name: 'Five',
       img: 'https://img.icons8.com/officel/2x/person-male.png',
       selected: false
     },

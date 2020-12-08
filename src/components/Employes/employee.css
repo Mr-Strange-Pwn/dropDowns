@@ -156,3 +156,19 @@ color: #A0B5D9;
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+img.img-set.img-fluid.rounded-circle {
+  display: inline-flex !important;
+    margin-right: -25px;  
+    margin-left: -3px;
+}
+.quote-wrapper{
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 128, 172, 1) 0%,
+    rgba(0, 128, 172, 1) 70%,
+    rgba(0, 128, 172, 0) 70.3%
+  );
+  height: 82%;
+  width: 58%;
+  text-align: center;
+}
