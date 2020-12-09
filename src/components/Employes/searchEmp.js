@@ -1,6 +1,6 @@
 import React from 'react'
 import { GoSearch } from 'react-icons/go'
-import { Container, Row, Col, Image } from 'react-bootstrap'
+import { Row, Col, Container } from 'react-bootstrap'
 const SearchEmp = (props) => {
 
     return (

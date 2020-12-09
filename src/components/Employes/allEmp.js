@@ -4,22 +4,28 @@ import { Row, Col, Image } from "react-bootstrap";
 const AllEmp = (props) => {
     const { index, person, selectEmploye, checkedVal } = props;
 
-    const [checked, setChecked] = React.useState(person.selected);
+    const [checked, setChecked] = React.useState(false);
     React.useEffect(() => {
         setChecked(person.selected);
-    }, [checkedVal]);
+    }, [person.selected]);
+
+    // React.useEffect(() => {
+    //     let per = checkedVal.filter(p => p.id === person.id)
+    //     console.log("p e", per)
+    //     if (per.length > 0) {
+    //         setChecked(per[0].selected)
+    //     }
+    // }, [checkedVal])
 
     const changeHandler = () => {
         selectEmploye(person.id);
-
-        setChecked(!checked);
     };
 
     return (
         <Row key={JSON.stringify(index)} className="empRow">
             <Col xs={2} className="mb-3 pr-0">
                 <Image
-                    style={{ height: "24px", width: "24px" }}
+                    style={{ height: "26px", width: "26px" }}
                     src={person.img}
                     roundedCircle
                     fluid
