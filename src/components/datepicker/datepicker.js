@@ -5,10 +5,11 @@ import { Container, Row, Col } from 'react-bootstrap'
 import { AiOutlineCalendar } from 'react-icons/ai'
 import { TiArrowUnsorted } from 'react-icons/ti'
 import './datestyle.css'
-export const Date2 = () => {
+export const Date2 = (props) => {
 
     const [clicked, setClicked] = React.useState(false)
     const [today, setToday] = React.useState(new Date())
+    const [dt, setDate] = React.useState('')
 
     const useOutsideAlerter = (ref) => {
         useEffect(() => {
@@ -27,6 +28,10 @@ export const Date2 = () => {
         }, [ref]);
     }
 
+    React.useEffect(() => {
+        props.onChange(dt)
+    }, [dt])
+
     const wrapperRef = useRef(null);
     useOutsideAlerter(wrapperRef);
 
@@ -35,7 +40,7 @@ export const Date2 = () => {
         today.getMonth(),
         today.getDate() - 7
     )
-    const [dt, setDate] = React.useState('')
+
     const handleDate = (e) => {
         setDate(e.toLocaleDateString('en-ZA'))
         setClicked(!clicked)

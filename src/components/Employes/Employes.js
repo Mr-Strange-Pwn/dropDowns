@@ -4,6 +4,7 @@ import "./employee.css";
 import SearchEmp from "./searchEmp";
 import Category from "./category"
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import PropTypes from 'prop-types';
 
 const Employes = (props) => {
     const [employes, setEmployes] = React.useState([]);
@@ -47,6 +48,7 @@ const Employes = (props) => {
         } else {
             setCheckSelectAll(false);
         }
+        props.onChange(selectedEmployes)
     }, [selectedEmployes]);
 
     const wrapperRef = useRef(null);
@@ -137,7 +139,7 @@ const Employes = (props) => {
 
     return (
         <>
-            <Container ref={wrapperRef}>
+            <Container ref={wrapperRef} >
                 <div className="dropDown" onClick={() => setClicked(!clicked)}>
                     <Container>
                         <Row className="pl-4 pt-2" >
@@ -237,5 +239,10 @@ const Employes = (props) => {
         </>
     );
 };
+
+Employes.propTypes = {
+    data: PropTypes.array.isRequired,
+    onChange: PropTypes.func.isRequired,
+}
 
 export default Employes;

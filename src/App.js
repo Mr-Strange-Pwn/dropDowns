@@ -4,6 +4,10 @@ import Employes from "./components/Employes/Employes";
 import Date from './components/datepicker/datepicker';
 
 export default function App() {
+
+  const [empl, setEmpl] = React.useState([])
+  const [dt, setDt] = React.useState('')
+
   const Employee = [
     {
       id: "1",
@@ -48,21 +52,33 @@ export default function App() {
       profile: "practitioner"
     }
   ]
-  return (
 
-    <Container>
-      <Row>
-        <Col>
-          <h4> select employee dropdown</h4>
-          <Employes data={Employee} />
-          <h3>ready to test</h3>
-        </Col>
-        <Col>
-          <h4> pick date2 dropdown</h4>
-          <Date />
-          <h3>ready to test</h3>
-        </Col>
-      </Row>
-    </Container>
+  console.log("selected emp ", empl)
+  return (
+    <>
+      <Container>
+        <Row>
+          <Col>
+            <h4> select employee dropdown</h4>
+            <Employes data={Employee} onChange={e => setEmpl(e)} />
+            <h3>ready to test</h3>
+          </Col>
+          <Col>
+            <h4> pick date2 dropdown picked Date: {dt}</h4>
+            <Date onChange={e => setDt(e)} />
+            <h3>ready to test</h3>
+          </Col>
+        </Row>
+      </Container>
+
+      <div>
+        <p>selected Employes</p>
+        <ul>
+          {empl.map(emp => (<li>name: {emp.name} profile: {emp.profile}</li>))}
+        </ul>
+      </div>
+    </>
+
+
   );
 }
