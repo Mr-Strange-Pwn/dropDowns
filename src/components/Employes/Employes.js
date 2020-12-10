@@ -140,7 +140,7 @@ const Employes = (props) => {
             <Container ref={wrapperRef}>
                 <div className="dropDown" onClick={() => setClicked(!clicked)}>
                     <Container>
-                        <Row className="pl-4" >
+                        <Row className="pl-4 pt-2" >
                             <Col xs={2} className="mb-3 pr-0">
                                 <h5 className="quote-wrapper">
                                     {employes.length}
@@ -161,9 +161,9 @@ const Employes = (props) => {
                                 }
                             </Col>
                             <Col className="text-left ">
-                                <p style={{ paddingTop: "10px" }}>select Employee</p>
+                                <p style={{ paddingTop: "2px" }}>select Employee</p>
                             </Col>
-                            <Col style={{ paddingTop: "10px", marginRight: "10px" }} xs={1}>
+                            <Col style={{ paddingTop: "3px", marginRight: "10px" }} xs={1}>
                                 {clicked ? <IoIosArrowUp /> : <IoIosArrowDown />}
                             </Col>
                         </Row>
