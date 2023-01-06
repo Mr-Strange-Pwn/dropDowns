@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Row, Col, Image } from "react-bootstrap";
 
 const AllEmp = (props) => {
     const { index, person, selectEmploye, checkedVal } = props;
 
-    const [checked, setChecked] = React.useState(false);
-    React.useEffect(() => {
+    const [checked, setChecked] = useState(false);
+    useEffect(() => {
         setChecked(person.selected);
     }, [person.selected]);
 

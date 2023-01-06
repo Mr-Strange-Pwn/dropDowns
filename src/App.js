@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Employes from "./components/Employes/Employes";
 import Date from './components/datepicker/datepicker';
+import Emp from 'react-employees-dropdown'
 
 export default function App() {
 
@@ -50,6 +51,61 @@ export default function App() {
       img: 'https://homepages.cae.wisc.edu/~ece533/images/airplane.png',
       selected: false,
       profile: "practitioner"
+    },
+    {
+      id: "7",
+      name: 'Seven',
+      img: 'https://homepages.cae.wisc.edu/~ece533/images/airplane.png',
+      selected: false,
+      profile: "Manager"
+    }, {
+      id: "8",
+      name: 'One',
+      img: 'https://img.icons8.com/officel/2x/person-male.png',
+      selected: false,
+      profile: "practitioner"
+    },
+    {
+      id: "9",
+      name: 'Two',
+      img: 'https://www.publicdomainpictures.net/pictures/270000/velka/avatar-people-person-business-.jpg',
+      selected: false,
+      profile: "assistant"
+    },
+    {
+      id: "10",
+      name: 'Three',
+      img: 'https://cdn.pixabay.com/photo/2013/07/13/10/07/man-156584_1280.png',
+      selected: false,
+      profile: "assistant"
+    },
+    {
+      id: "11",
+      name: 'Four',
+      img: 'https://img.freepik.com/free-photo/cheerful-curly-business-girl-wearing-glasses_176420-206.jpg?size=626&ext=jpg',
+      selected: false,
+      profile: "practitioner"
+    },
+    {
+      id: "12",
+      name: 'Five',
+      img: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8&w=1000&q=80',
+      selected: false,
+      profile: "assistant"
+    },
+    {
+      id: "13",
+      name: 'six',
+      img: 'https://homepages.cae.wisc.edu/~ece533/images/airplane.png',
+      selected: false,
+      profile: "practitioner"
+    },
+    {
+      id: "14",
+      name: 'Seven',
+      img: 'https://homepages.cae.wisc.edu/~ece533/images/airplane.png',
+      selected: false,
+      profile: "Manager"
     }
   ]
 
@@ -59,6 +115,7 @@ export default function App() {
       <Container>
         <Row>
           <Col>
+            <Emp data={Employee} onChange={e => setEmpl(e)} />
             <h4> select employee dropdown</h4>
             <Employes data={Employee} onChange={e => setEmpl(e)} />
             <h3>ready to test</h3>
@@ -69,6 +126,8 @@ export default function App() {
             <h3>ready to test</h3>
           </Col>
         </Row>
+
+
       </Container>
 
       <div>

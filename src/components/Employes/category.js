@@ -1,14 +1,14 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import AllEmp from "./allEmp";
 import { Row, Col } from "react-bootstrap";
 
 
 const Category = (props) => {
     const { name, selectEmploye, employes } = props
-    const [category, setCategory] = React.useState(props.category)
-    const [check, setCheck] = React.useState(false)
+    const [category, setCategory] = useState(props.category)
+    const [check, setCheck] = useState(false)
 
-    React.useEffect(() => {
+    useEffect(() => {
         let ticked = props.category.filter(p => p.selected === true)
         if (ticked.length === category.length) { setCheck(true) }
         else { setCheck(false) }
@@ -32,11 +32,11 @@ const Category = (props) => {
     }
 
     return (
-        <>
+        <React.Fragment>
             <Row className="pl-4">
 
-                <Col> <p className="D_para">All {name}</p></Col>
-                <>
+                <Col> <p className="D_para">{`All ${name}s`}</p></Col>
+                <React.Fragment>
                     {props.search ? null : <Col xs={2}>
                         <div className="cont">
                             <input
@@ -44,10 +44,10 @@ const Category = (props) => {
                                 onChange={() => selectAllCategory()}
                                 checked={check}
                             />
-                            <span className="checkmark"></span>
+                            <span className="checkmark" style={{ borderRadius: "25px" }}></span>
                         </div></Col>
                     }
-                </>
+                </React.Fragment>
             </Row>
             {
                 category.map((person, index) => (
@@ -60,7 +60,8 @@ const Category = (props) => {
                     />
                 ))
             }
-        </>
+            <hr className="Line" />
+        </React.Fragment>
     )
 }
 

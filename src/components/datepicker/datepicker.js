@@ -76,7 +76,7 @@ export const Date2 = (props) => {
                                 selected={today}
                                 onSelect={e => handleDate(e)}
                                 minDate={lastWeek}
-                                max={new Date(2021, 11, 31)}
+                                max={new Date(2024, 11, 31)}
 
                                 theme={{
                                     floatingNav: {

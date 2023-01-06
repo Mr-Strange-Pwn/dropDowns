@@ -1,20 +1,22 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Container, Row, Col, Image } from "react-bootstrap";
 import "./employee.css";
 import SearchEmp from "./searchEmp";
 import Category from "./category"
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import Scrole from 'react-scrollbars-custom'
 import PropTypes from 'prop-types';
 
 const Employes = (props) => {
-    const [employes, setEmployes] = React.useState([]);
-    const [practitioners, setpractitioners] = React.useState([]);
-    const [assistants, setassistants] = React.useState([]);
+    const [employes, setEmployes] = useState([]);
+    const [practitioners, setpractitioners] = useState([]);
+    const [assistants, setassistants] = useState([]);
+    const [allCategory, setAllCatagory] = useState([]);
 
-    const [search, setSearch] = React.useState("");
-    const [selectedEmployes, setSelectedEmployes] = React.useState([]);
-    const [clicked, setClicked] = React.useState(false);
-    const [checkSelectAll, setCheckSelectAll] = React.useState(false);
+    const [search, setSearch] = useState("");
+    const [selectedEmployes, setSelectedEmployes] = useState([]);
+    const [clicked, setClicked] = useState(false);
+    const [checkSelectAll, setCheckSelectAll] = useState(false);
 
     const useOutsideAlerter = (ref) => {
         useEffect(() => {
@@ -33,16 +35,16 @@ const Employes = (props) => {
         }, [ref]);
     };
 
-    React.useEffect(() => {
+    useEffect(() => {
         setEmployes(props.data);
     }, []);
 
-    React.useEffect(() => {
+    useEffect(() => {
         setEmpCategory()
         selectedEmp();
     }, [employes]);
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (selectedEmployes.length === employes.length) {
             setCheckSelectAll(true);
         } else {
@@ -55,9 +57,30 @@ const Employes = (props) => {
     useOutsideAlerter(wrapperRef);
 
     // return <div ref={wrapperRef}>{props.children}</div>;
+
+    // to devide as category 
     const setEmpCategory = () => {
-        let assistants = employes.filter(person => person.profile === "assistant")
-        let practitioners = employes.filter(person => person.profile === "practitioner")
+        let allcalt = []
+        let Cat = []
+        let catObject = []
+        employes.map(p => allcalt.push(p.profile))
+
+        for (let i = 0; i < allcalt.length; i++) {
+            if (!Cat.includes(allcalt[i])) {
+                Cat.push(allcalt[i])
+            }
+        }
+
+        for (let i = 0; i < Cat.length; i++) {
+            let element
+            let data = employes.filter(p => p.profile === Cat[i])
+            let name = Cat[i]
+            element = { [name]: data }
+            catObject.push(element)
+
+        }
+
+        setAllCatagory(catObject)
         setpractitioners(practitioners)
         setassistants(assistants)
     }
@@ -66,25 +89,38 @@ const Employes = (props) => {
         let result = employes.filter(
             (person) => person.name.toLowerCase().search(search.toLowerCase()) !== -1
         );
-        let Assis = result.filter(p => p.profile === "assistant")
-        let pract = result.filter(p => p.profile === "practitioner")
 
-        return (
-            <>
-                <>
-                    {
-                        pract.length > 0 ? <><Category name="practitioners" category={pract} selectEmploye={selectEmploye} employes={employes} search={true} /><hr className="Line" /></> : null
-                    }
-                </>
-                <>
-                    {
-                        Assis.length > 0 ? <>  <Category name="assistants" category={Assis} selectEmploye={selectEmploye} employes={employes} search={true} /></> : null
-                    }
-                </>
+        let allP = []
+        let resCat = []
+        let resultObj = []
+        result.map(p => allP.push(p.profile))
+        for (let i = 0; i < allP.length; i++) {
+            if (!resCat.includes(allP[i])) {
+                resCat.push(allP[i])
+            }
+        }
+        for (let i = 0; i < resCat.length; i++) {
+            let element
+            let data = result.filter(p => p.profile === resCat[i])
+            let name = resCat[i]
+            element = { [name]: data }
+            resultObj.push(element)
+        }
+
+        return <React.Fragment>
+            <Scrole style={{ width: "350px", height: "180px" }} noScrollX={true}>
+                {
+                    resultObj.map((category, index) => {
+                        let name = Object.keys(category)[0]
+                        let array = category[name]
+                        return <Category key={index} name={name} category={array} selectEmploye={selectEmploye} employes={employes} search={true} />
+
+                    })
+                }
+            </Scrole>
+        </React.Fragment>
 
 
-            </>
-        );
     };
 
     const selectEmploye = (id) => {
@@ -138,12 +174,12 @@ const Employes = (props) => {
     };
 
     return (
-        <>
+        <React.Fragment>
             <Container ref={wrapperRef} >
                 <div className="dropDown" onClick={() => setClicked(!clicked)}>
                     <Container>
                         <Row className="pl-4 pt-2" >
-                            <Col xs={2} className="mb-3 pr-0">
+                            <Col xs={2} className="mb-3 pl-0">
                                 <h5 className="quote-wrapper">
                                     {employes.length}
                                 </h5>
@@ -151,8 +187,9 @@ const Employes = (props) => {
 
                             <Col xs={2}>
                                 {
-                                    employes.map((d) => (
+                                    employes.map((d, i) => (
                                         <Image
+                                            key={i}
                                             style={{ height: "29px", width: "22px" }}
                                             src={d.img}
                                             className="img-set"
@@ -185,7 +222,7 @@ const Employes = (props) => {
 
                                 <Col>
                                     <Row className="pl-4">
-                                        <Col xs={2} className="mb-3 pr-0">
+                                        <Col xs={2} className="mb-3 pl-0">
                                             <h5 className="quote-wrapper">
                                                 {selectedEmployes.length}
                                             </h5>
@@ -193,8 +230,9 @@ const Employes = (props) => {
 
                                         <Col>
                                             {selectedEmployes.length > 0
-                                                ? selectedEmployes.map((d) => (
+                                                ? selectedEmployes.map((d, i) => (
                                                     <Image
+                                                        key={i}
                                                         style={{ height: "29px", width: "22px" }}
                                                         src={d.img}
                                                         className="img-set"
@@ -222,12 +260,16 @@ const Employes = (props) => {
                                         </Col>
                                     </Row>{" "}
                                     <hr className="Line" />
+                                    <Scrole style={{ width: "355px", height: "380px" }} noScrollX={true}>
+                                        {
+                                            allCategory.map((category, index) => {
+                                                let name = Object.keys(category)[0]
+                                                let array = category[name]
+                                                return <Category key={index} name={name} category={array} selectEmploye={selectEmploye} employes={employes} />
 
-                                    <Category name="practitioners" category={practitioners} selectEmploye={selectEmploye} employes={employes} /><hr className="Line" />
-                                    <Category name="assistants" category={assistants} selectEmploye={selectEmploye} employes={employes} />
-
-
-
+                                            })
+                                        }
+                                    </Scrole>
 
                                 </Col>
                                 <hr className="Line" />
@@ -236,7 +278,7 @@ const Employes = (props) => {
                     ) : null}
                 </div>
             </Container>
-        </>
+        </React.Fragment>
     );
 };
 
